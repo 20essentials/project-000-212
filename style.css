@@ -1,0 +1,114 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue';
+  -webkit-tap-highlight-color: transparent;
+}
+
+html{
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: white transparent;
+}
+
+body {
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center;
+  background-image: url('assets/texture.svg');
+  background-size: 20vw;
+
+  @media (width <= 1111px) {
+    background-size: 33vw;
+  }
+}
+
+.card-container {
+  width: 250px;
+  height: 250px;
+  background-color: #fff;
+  position: relative;
+
+  @media (width <= 1111px) {
+    width: 180px;
+    height: 180px;
+  }
+
+  .img-container {
+    position: absolute;
+    inset: 5%;
+    background-image: url('assets/n1.avif');
+    background-size: cover;
+    height: auto;
+    interpolate-size: allow-keywords;
+    transition: height .5s ease;
+  }
+
+  .details-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+
+    p {
+      position: absolute;
+      bottom: 0;
+      padding: 1rem;
+      font-size: 14px;
+      background-color: transparent;
+      width: 100%;
+      height: 20%;
+      text-align: center;
+
+      @media (width <= 1111px) {
+        font-size: 12px;
+        line-height: 20%;
+      }
+    }
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #fff;
+    transition: transform .4s ease;
+    z-index: -1;
+  }
+
+  &::before {
+    box-shadow: inset 0 0 10px 0 #0003;
+  }
+
+  &::after {
+    box-shadow: inset 0 0 20px 0 #0003;
+  }
+
+  &:hover {
+    .img-container {
+      height: 76%;
+    }
+
+    .details-container {
+      opacity: 1;
+    }
+
+    &::before {
+      transform:  rotate(20deg);
+    }
+
+    &::after {
+      transform:  rotate(10deg);
+    }
+  }
+}
