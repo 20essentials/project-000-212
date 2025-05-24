@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title | default("Layered Card") }}</title>
+    <meta name="google" content="notranslate" />
+    <link rel="shortcut icon" href="{{ favicon | default('assets/favicon.webp') }}" type="image/x-icon" />
+    <style>
+      *,
+      *::after,
+      *::before {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+          'Helvetica Neue';
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-color: white transparent;
+      }
+
+      body {
+        height: 100dvh;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        place-content: center;
+        background-image: url('{{ background | default("assets/texture.svg") }}');
+        background-size: 20vw;
+      }
+
+      @media (width <= 1111px) {
+        body {
+          background-size: 33vw;
+        }
+
+        .card-container {
+          width: 180px;
+          height: 180px;
+        }
+
+        .card-container .details-container p {
+          font-size: 12px;
+          line-height: 20%;
+        }
+      }
+
+      .card-container {
+        width: 250px;
+        height: 250px;
+        background-color: #fff;
+        position: relative;
+      }
+
+      .card-container .img-container {
+        position: absolute;
+        inset: 5%;
+        background-image: url('{{ image | default("assets/n1.avif") }}');
+        background-size: cover;
+        height: auto;
+        interpolate-size: allow-keywords;
+        transition: height 0.5s ease;
+      }
+
+      .card-container .details-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        opacity: 0;
+        transition: opacity 1s ease;
+      }
+
+      .card-container .details-container p {
+        position: absolute;
+        bottom: 0;
+        padding: 1rem;
+        font-size: 14px;
+        background-color: transparent;
+        width: 100%;
+        height: 20%;
+        text-align: center;
+      }
+
+      .card-container::before,
+      .card-container::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: #fff;
+        transition: transform 0.4s ease;
+        z-index: -1;
+      }
+
+      .card-container::before {
+        box-shadow: inset 0 0 10px 0 #0003;
+      }
+
+      .card-container::after {
+        box-shadow: inset 0 0 20px 0 #0003;
+      }
+
+      .card-container:hover .img-container {
+        height: 76%;
+      }
+
+      .card-container:hover .details-container {
+        opacity: 1;
+      }
+
+      .card-container:hover::before {
+        transform: rotate(20deg);
+      }
+
+      .card-container:hover::after {
+        transform: rotate(10deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card-container">
+      <div class="img-container"></div>
+      <div class="details-container">
+        <p>{{ text | default("SOMETHING...") }}</p>
+      </div>
+    </div>
+  </body>
+</html>
