@@ -1,3 +1,0 @@
-- **Reference ⬇️**
-  - [ONLINE TUTORIAL VIDEO](https://youtu.be/gdVOG23s5yA?si=9MDO_9LjpV9ezeEP)
-  - [TEXTURE SVG](https://loading.io/pattern/m-gooey)
